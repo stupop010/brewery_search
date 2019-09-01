@@ -30,6 +30,7 @@ export default {
   color: #2c3e50;
 }
 body {
+  background: rgba(219, 217, 217, 0.8);
   padding: 0;
   margin: 0;
 }
