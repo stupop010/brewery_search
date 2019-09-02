@@ -3,6 +3,8 @@
   <div class="search-container">
     <form v-on:submit.prevent="onSubmit">
       <input type="text" placeholder="Search..." class="search-input" v-model="search" />
+      <button type="submit">Submit</button>
+      <button v-on:click.prevent="clear">clear</button>
     </form>
     <Results :brew="brew" />
   </div>
@@ -25,10 +27,14 @@ export default {
   },
   methods: {
     async onSubmit() {
+      if (!this.search) return;
       const res = await axios.get(
         `https://api.openbrewerydb.org/breweries/search?query=${this.search}`
       );
       this.brew = res.data;
+      this.clear();
+    },
+    clear() {
       this.search = "";
     }
   },
@@ -51,5 +57,16 @@ export default {
   padding-left: 0.2em;
   width: 12em;
   border: 1px solid black;
+}
+button {
+  font-size: 1.2em;
+  margin-left: 0.5em;
+  border-radius: 5px;
+  border: 1px solid black;
+  background: grey;
+}
+button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 </style>
