@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="flex">
-      <div class="card" v-for="brew in breweries" :key="brew.id">
+      <div class="card" v-for="brew in this.brew" :key="brew.id">
         <h1>{{brew.name}}</h1>
         <p>{{brew.city}}</p>
         <p>{{brew.state}}</p>
@@ -13,17 +13,10 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
-  name: "HelloWorld",
-  data() {
-    return {
-      breweries: null
-    };
-  },
-  async created() {
-    const res = await axios.get("https://api.openbrewerydb.org/breweries");
-    this.breweries = res.data;
+  name: "Results",
+  props: {
+    brew: Array
   }
 };
 </script>
@@ -42,7 +35,6 @@ export default {
 
 .card {
   width: 23%;
-  /* height: 10em; */
   border: 1px solid rgba(11, 11, 11, 0.7);
   border-radius: 5px;
   box-shadow: 1px 1px rgba(48, 48, 47, 0.6);
@@ -59,12 +51,18 @@ export default {
   font-weight: 600;
   color: black;
   padding: 0 1em;
-  overflow: scroll;
 }
 .card > p {
   margin: 0.2em;
 }
+@media only screen and (max-width: 1120px) {
+  .card {
+    width: 45%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .card {
+    width: 90%;
+  }
+}
 </style>
-
-//  url https://sandbox-api.brewerydb.com/v2/breweries
-//  api d528f7e9d925d4fd60cda291a485e8bd

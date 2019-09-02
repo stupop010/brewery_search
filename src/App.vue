@@ -2,12 +2,10 @@
   <div id="app">
     <Header />
     <Search />
-    <Home />
   </div>
 </template>
 
 <script>
-import Home from "./components/Home.vue";
 import Header from "./components/Header.vue";
 import Search from "./components/Search";
 
@@ -15,7 +13,6 @@ export default {
   name: "app",
   components: {
     Header,
-    Home,
     Search
   }
 };
