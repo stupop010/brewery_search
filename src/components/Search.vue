@@ -2,9 +2,13 @@
 <template>
   <div class="search-container">
     <form v-on:submit.prevent="onSubmit">
-      <input type="text" placeholder="Search..." class="search-input" v-model="search" />
-      <button type="submit">Submit</button>
-      <button v-on:click.prevent="clear">clear</button>
+      <div class="form-group">
+        <input type="text" placeholder="Search..." class="search-input" v-model="search" />
+        <div>
+          <button type="submit">Submit</button>
+          <button v-on:click.prevent="clear">clear</button>
+        </div>
+      </div>
     </form>
     <Results :brew="brew" />
   </div>
@@ -58,6 +62,9 @@ export default {
   width: 12em;
   border: 1px solid black;
 }
+.form-group {
+  display: flex;
+}
 button {
   font-size: 1.2em;
   margin-left: 0.5em;
@@ -68,5 +75,17 @@ button {
 button:hover {
   cursor: pointer;
   transform: scale(1.1);
+}
+
+@media only screen and (max-width: 620px) {
+  .search-input {
+    width: 100%;
+  }
+  .form-group {
+    flex-direction: column;
+  }
+  .form-group > div {
+    margin-top: 0.5em;
+  }
 }
 </style>
